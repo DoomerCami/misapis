@@ -1,14 +1,25 @@
 // models/theOffice.models.js
 import mongoose from 'mongoose';
 
-const theOfficeSchema = new mongoose.Schema({
-    nombre: { type: String, required: true },
-    rol: { type: String, required: true },
-    temporada: { type: Number, required: true },
-    episodio: { type: Number, required: true },
-    frase: { type: String, required: false }
+const personajeSchema = new mongoose.Schema({
+    nombre: {
+        type: String,
+        required: true,
+    },
+    puesto: {
+        type: String,
+        required: true,
+    },
+    descripcion: {
+        type: String,
+        required: true,
+    },
+    imagen: {
+        type: String, // URL de la imagen del personaje
+        required: true,
+    },
 });
 
-const TheOffice = mongoose.model('TheOffice', theOfficeSchema);
+const Personaje = mongoose.model('Personaje', personajeSchema);
 
-export default TheOffice;
+export default Personaje;
