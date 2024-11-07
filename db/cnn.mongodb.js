@@ -8,8 +8,8 @@ const conectarAMongoDB = async ()=>{
     }
 
     try {
-        await mongoose.connect(process.env.MONGO_URI);
-        isConected = true
+        await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+        isConected = true;
         console.log('Conectado a MongoDB'.green);
     } catch (error){
         console.log('Error al conectar a MongoDB'.red);
@@ -26,15 +26,15 @@ db.on('error', (error)=>{
 
 db.once('open', ()=>{
     isConected = true;
-})
+});
 db.on('disconnected', ()=>{
     isConected = false;
     console.log('Desconectado de MongoDB'.yellow);
-})
+});
 process.on('SIGINT', async ()=>{
     await mongoose.connection.close();
     console.log('MongoDB desconectado'.green);
     process.exit(0);
-})
+});
 
 export {conectarAMongoDB, isConected};
